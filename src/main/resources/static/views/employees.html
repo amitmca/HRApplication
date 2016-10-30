@@ -1,0 +1,11 @@
+<div class="jheader"><h1>H and J LLC Employees</h1></div>
+
+<md-content>
+      <md-list flex>
+        <md-list-item class="md-3-line" ng-repeat="employee in employees">
+          <div class="md-list-item-text" layout="column">
+              <a href="#/timecards/{{employee.employeeID}}"><h3>Employee #:{{ employee.employeeID }}, Name: {{ employee.firstName }} {{ employee.lastName }}, Salary: ${{employee.hourlyPayRate}}/hr</h3></a>
+          </div>
+        </md-list-item>
+    </md-list>
+</md-content>

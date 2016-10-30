@@ -1,0 +1,16 @@
+<h1>{{employee.firstName}}'s Time Cards</h1>
+
+<h3>Salary: ${{employee.hourlyPayRate}}</h3>
+
+<input type="datetime-local" name="start" ng-model="newTimeCard.start" />
+<input type="datetime-local" name="end" ng-model="newTimeCard.end" />
+<input type="checkbox" name="overtime" ng-model="newTimeCard.overtime">Overtime
+<button type="button" class="pay" ng-click="addTimeCard()">Add Time Card for {{employee.firstName}}</button><br><br>
+<select name="multipleSelect" id="multipleSelect" ng-model="timecardList" multiple>
+    <option ng-repeat="timecard in timecards" value="{{timecard.timeCardId}}">Start of Shift: {{ timecard.start }} | End of Shift: {{ timecard.end }}</option>
+</select>
+<h6>Select Time Cards from a specified pay period</h6><br>
+<button type="button" class="pay" ng-click="calculatePay()">Calculate Pay for Shifts Selected</button><br>
+<!--{{newTimeCard}}-->
+<div ng-hide="paid">{{employee.firstName}} earned ${{pay}} during this pay period</div><br>
+<button type="button" class="firingButton" ng-click="deleteEmployee()">Cancel This Dude!!!</button>
