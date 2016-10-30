@@ -15,15 +15,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http
-//					.authorizeRequests()   works to allow all
-//					.anyRequest().permitAll();
+					.authorizeRequests()   //works to allow all
+					.anyRequest().permitAll();
+
+
+//					.formLogin()
+//						.loginPage("/login.html")
+
+
 
 //				spring boot security
-						.httpBasic()
-					.and()
-						.authorizeRequests()
-							.antMatchers("/index", "/home", "/login", "/").permitAll()
-							.anyRequest().authenticated();
+//						.httpBasic()
+//					.and()
+//						.authorizeRequests()
+//							.antMatchers("/index.html", "/login.html", "/").permitAll()
+//							.anyRequest().authenticated();
+
+
+
 
 //			http.authorizeRequests()
 //			.antMatchers("/**").authenticated()

@@ -24,11 +24,7 @@ angular.module('hrviewApp')
       $http.get('http://localhost:8080/user', {headers : headers}).then(function(response) {//gets user info from backend
         console.log(headers);
         console.log(response);
-        if (response.data.authenticated) {
-          $rootScope.authenticated = true;
-        } else {
-          $rootScope.authenticated = false;
-        }
+        $rootScope.authenticated = response.data.authenticated;
         callback && callback();
       }, function() {
         $rootScope.authenticated = false;
@@ -56,7 +52,7 @@ angular.module('hrviewApp')
     self.logout = function() {
       $http.post('http://localhost:8080/logout', {}).finally(function() {
         $rootScope.authenticated = false;
-        $location.path("/");
+        // $location.path("/");
       });
-    }
+    };
   });

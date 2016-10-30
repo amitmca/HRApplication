@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="hrviewApp" ng-cloak="ng-cloak">
+  <body ng-app="hrviewApp" ng-cloak="ng-cloak" ng-controller="MainCtrl as main">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -36,20 +36,20 @@
             <a class="navbar-brand" href="#/">H and J LLC</a>
           </div>
 
-          <div class="collapse navbar-collapse" id="js-navbar-collapse" ng-controller="MainCtrl">
+          <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
             <ul class="nav navbar-nav">
               <li class="active"><a href="#/">Home</a></li>
               <li><a ng-href="#/createEmployee">New Employee</a></li>
               <li ng-show="!authenticated"><a href="#/login">Login</a></li>
-              <li ng-show="authenticated"><a href="" ng-click="nav.logout()">Logout</a></li>
+              <li ng-show="authenticated"><a href="" ng-click="main.logout()">Logout</a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="container" ng-controller="MainCtrl">
+    <div class="container">
     <div ng-view="" ng-show="authenticated"></div><div class="failedLogin" ng-show="!authenticated"><h1>Log In to view this content</h1></div>
     </div>
 
