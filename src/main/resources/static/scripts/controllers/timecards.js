@@ -8,19 +8,21 @@
  * Controller of the hrviewApp
  */
 angular.module('hrviewApp')
-    .controller('TimeCardsCtrl', function ($scope, $http, $routeParams) {
+    .controller('TimeCardsCtrl', function ($scope, $http, $routeParams, $rootScope, $location) {
 //        var disDate = new Date(Date.parse("Jul 21, 2000 12:44:14"));
 //        console.log(disDate.toDateString());
 //        console.log(disDate.getMinutes());
 //        console.log(disDate.toLocaleTimeString());
 //        $scope.isEmployee = ($routeParams.employeeID>0)?true:false;
-//        
-        $scope.paid = true;
-    
+//
+      if(!$rootScope.authenticated)$location.path("/login");
+
+      $scope.paid = true;
+
         $scope.showIt = function () {
             $scope.paid = false;
         };
-    
+
         $http.get("http://localhost:8080/employees/" + $routeParams.id)
             .then(function (response) {
                 $scope.employee = response.data;
@@ -28,11 +30,11 @@ angular.module('hrviewApp')
             }, function (error) {
                 console.log(error);
             });
-        
+
         $scope.timecardList = {
-            
+
         };
-        
+
         $http.get("http://localhost:8080/timecards")
             .then(function (response) {
                 $scope.date = response.data[0].end;
@@ -42,16 +44,16 @@ angular.module('hrviewApp')
             }, function (error) {
                 console.log(error);
             });
-    
+
         var iddd = $routeParams.id;
-    
+
         $scope.newTimeCard = {
             "start" : "",
             "end" : "",
             "employeeID" : iddd,
             "overtime" : false
         };
-        
+
         $scope.addTimeCard = function () {
 //            $scope.newTimeCard.start = $scope.newTimeCard.start.toUTCString();
 //            $scope.newTimeCard.end = $scope.newTimeCard.end.toUTCString();
@@ -64,7 +66,7 @@ angular.module('hrviewApp')
                     console.log(error);
                 });
         };
-    
+
 //        var dateSwitch = function (oldDate) {
 //            var timeHolder = parseInt(oldDate.substring(11,13),10);
 //            var tHolder = timeSwitch(timeHolder);
@@ -72,12 +74,12 @@ angular.module('hrviewApp')
 //            var newTime =(tHolder<10)?"0"+timeString:timeString;
 //            return oldDate.replace(("[T][0-9]{2}"),newTime);
 //        };
-//    
+//
 //        var timeSwitch = function (oldTime) {
 //            var newTime = (oldTime+19)%24;
 //            return newTime;
 //        };
-//    
+//
         $http.get("http://localhost:8080/timecards/" + $routeParams.id)
                 .then(function (response) {
                 $scope.timecards = response.data;
@@ -85,7 +87,7 @@ angular.module('hrviewApp')
             }, function () {
 
             });
-        
+
         $scope.calculatePay = function () {
             $http.post("http://localhost:8080/pay/" + $routeParams.id, $scope.timecardList)
                 .then(function (response) {
@@ -96,7 +98,7 @@ angular.module('hrviewApp')
                 });
             $scope.showIt();
         };
-    
+
         $scope.deleteEmployee = function () {
             var firstConfirm = confirm("Are You sure?");
             if (firstConfirm === true) {
@@ -109,7 +111,7 @@ angular.module('hrviewApp')
                     });
             }
         };
-        
+
 //        $scope.timecards = function (id) {
 //            $state.go('/timecards/'+id);
 //        };

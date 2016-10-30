@@ -11,7 +11,7 @@ angular.module('hrviewApp')
   .controller('MainCtrl', function ($rootScope, $http, $location) {
 
     // $scope.authenticated = true;
-
+    // $rootScope.available = true;
 
     var self = this;
 
@@ -26,7 +26,8 @@ angular.module('hrviewApp')
         console.log(response);
         $rootScope.authenticated = response.data.authenticated;
         callback && callback();
-      }, function() {
+      }, function(error) {
+        console.log(error);
         $rootScope.authenticated = false;
         callback && callback();
       });
@@ -52,7 +53,7 @@ angular.module('hrviewApp')
     self.logout = function() {
       $http.post('http://localhost:8080/logout', {}).finally(function() {
         $rootScope.authenticated = false;
-        // $location.path("/");
+        $location.path("#/login");
       });
     };
   });

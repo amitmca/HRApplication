@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -15,8 +16,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http
-					.authorizeRequests()   //works to allow all
-					.anyRequest().permitAll();
+//					.authorizeRequests()   //works to allow all
+//					.anyRequest()
+//					.permitAll();
 
 
 //					.formLogin()
@@ -25,10 +27,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 //				spring boot security
-//						.httpBasic()
+						.httpBasic().and()
+					.csrf()
+					.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 //					.and()
 //						.authorizeRequests()
-//							.antMatchers("/index.html", "/login.html", "/").permitAll()
+//							.antMatchers("/").permitAll()
 //							.anyRequest().authenticated();
 
 
