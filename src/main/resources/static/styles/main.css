@@ -81,6 +81,12 @@ body {
     border-bottom: 0;
   }
 }
+
+.failedLogin{
+  margin: 0 auto;
+  color: #8c8c8c;
+}
+
 .jheader{
     color: blueviolet;
     width: 100%;

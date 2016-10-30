@@ -27,6 +27,11 @@ angular
         controller: 'EmployeesCtrl',
         controllerAs: 'employees'
       })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'MainCtrl',
+        controllerAs: 'main'
+      })
     .when('/createEmployee', {
         templateUrl: 'views/createEmployee.html',
         controller: 'EmployeesCtrl',
@@ -45,4 +50,7 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+
+    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';//for removing authentication popup
+
   });
