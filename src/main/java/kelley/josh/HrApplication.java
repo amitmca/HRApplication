@@ -16,6 +16,7 @@ import java.util.Date;
 @SpringBootApplication
 public class HrApplication {
 	SimpleDateFormat s = new SimpleDateFormat("MM/dd/yyyy");
+	
 	@Bean
 	InitializingBean saveData(EmployeeRepository empRepo, TimeCardRepository tcRepo){//method returning an initializing bean
 		return () -> {
