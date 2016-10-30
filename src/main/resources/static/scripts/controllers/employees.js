@@ -10,7 +10,7 @@
 angular.module('hrviewApp')
     .controller('EmployeesCtrl', function ($scope, $http, $rootScope, $location) {
       if(!$rootScope.authenticated)$location.path("/login");
-        $http.get("http://localhost:8080/employees")
+        $http.get("https://desolate-thicket-71372.herokuapp.com/employees")
             .then(function (response) {
                 $scope.employees = response.data;
             }, function (error) {
@@ -29,7 +29,7 @@ angular.module('hrviewApp')
 
         $scope.create = function (employee) {
 //            console.log(employee);
-            var urll = "http://localhost:8080/employees";
+            var urll = "https://desolate-thicket-71372.herokuapp.com/employees";
             $http.post(urll, employee, headers)
                 .then(function (response) {
                     console.log(response.data);

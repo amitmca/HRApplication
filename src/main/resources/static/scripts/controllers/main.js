@@ -21,7 +21,7 @@ angular.module('hrviewApp')
       + btoa(credentials.username + ":" + credentials.password)
       } : {};
 
-      $http.get('http://localhost:8080/user', {headers : headers}).then(function(response) {//gets user info from backend
+      $http.get('https://desolate-thicket-71372.herokuapp.com/user', {headers : headers}).then(function(response) {//gets user info from backend
         console.log(headers);
         console.log(response);
         $rootScope.authenticated = response.data.authenticated;
@@ -51,7 +51,7 @@ angular.module('hrviewApp')
     };
 
     self.logout = function() {
-      $http.post('http://localhost:8080/logout', {}).finally(function() {
+      $http.post('https://desolate-thicket-71372.herokuapp.com/logout', {}).finally(function() {
         $rootScope.authenticated = false;
         $location.path("#/login");
       });

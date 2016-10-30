@@ -23,7 +23,7 @@ angular.module('hrviewApp')
             $scope.paid = false;
         };
 
-        $http.get("http://localhost:8080/employees/" + $routeParams.id)
+        $http.get("https://desolate-thicket-71372.herokuapp.com/employees/" + $routeParams.id)
             .then(function (response) {
                 $scope.employee = response.data;
                 console.log($scope.employee);
@@ -35,7 +35,7 @@ angular.module('hrviewApp')
 
         };
 
-        $http.get("http://localhost:8080/timecards")
+        $http.get("https://desolate-thicket-71372.herokuapp.com/timecards")
             .then(function (response) {
                 $scope.date = response.data[0].end;
                 console.log($scope.date);
@@ -58,7 +58,7 @@ angular.module('hrviewApp')
 //            $scope.newTimeCard.start = $scope.newTimeCard.start.toUTCString();
 //            $scope.newTimeCard.end = $scope.newTimeCard.end.toUTCString();
             console.log($scope.newTimeCard);
-            $http.post("http://localhost:8080/timecards", $scope.newTimeCard)
+            $http.post("https://desolate-thicket-71372.herokuapp.com/timecards", $scope.newTimeCard)
                 .then(function (response) {
                     $scope.timecards = response.data;
                     console.log($scope.timecards);
@@ -80,7 +80,7 @@ angular.module('hrviewApp')
 //            return newTime;
 //        };
 //
-        $http.get("http://localhost:8080/timecards/" + $routeParams.id)
+        $http.get("https://desolate-thicket-71372.herokuapp.com/timecards/" + $routeParams.id)
                 .then(function (response) {
                 $scope.timecards = response.data;
                 console.log($scope.timecards);
@@ -89,7 +89,7 @@ angular.module('hrviewApp')
             });
 
         $scope.calculatePay = function () {
-            $http.post("http://localhost:8080/pay/" + $routeParams.id, $scope.timecardList)
+            $http.post("https://desolate-thicket-71372.herokuapp.com/pay/" + $routeParams.id, $scope.timecardList)
                 .then(function (response) {
                     $scope.pay = response.data;
                     console.log($scope.pay);
@@ -103,7 +103,7 @@ angular.module('hrviewApp')
             var firstConfirm = confirm("Are You sure?");
             if (firstConfirm === true) {
                 prompt("Is it their day off?");
-                $http.delete("http://localhost:8080/employees/" + $routeParams.id)
+                $http.delete("https://desolate-thicket-71372.herokuapp.com/employees/" + $routeParams.id)
                     .then(function (response) {
                         console.log(response.data);
                     }, function (error) {
